@@ -1,3 +1,6 @@
+# Fork Notice
+*This repository is a [pseudo-fork](https://stackoverflow.com/questions/29306032/fork-subdirectory-of-repo-as-a-different-repo-in-github) of [nkolban's esp32-snippets](https://github.com/nkolban/esp32-snippets/tree/master/cpp_utils)*. It is pseudo-forked in order to allow it to be used as a git submodule for a compoenent in an ESP32 project. 
+
 # CPP Utils
 This directory contains a wealth of C++ classes that have been found useful when working in C++ in conjunction
 with the ESP-IDF.  The classes have been documented using `doxygen` so one can run a doxygen processor over them
