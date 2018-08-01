@@ -194,15 +194,24 @@ uint8_t WiFi::connectAP(const std::string& ssid, const std::string& password, bo
 	}
 
 	m_connectFinished.take("connectAP");   // Take the semaphore to wait for a connection.
-    do {
-        ESP_LOGD(LOG_TAG, "esp_wifi_connect");
-        errRc = ::esp_wifi_connect();
-        if (errRc != ESP_OK) {
-            ESP_LOGE(LOG_TAG, "esp_wifi_connect: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
-            abort();
-        }
+//    do {
+//        ESP_LOGD(LOG_TAG, "esp_wifi_connect");
+//        errRc = ::esp_wifi_connect();
+//        if (errRc != ESP_OK) {
+//            ESP_LOGE(LOG_TAG, "esp_wifi_connect: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
+//            abort();
+//        }
+//    }
+//    while (!m_connectFinished.take(5000, "connectAP")); // retry if not connected within 5s
+//    m_connectFinished.give();
+
+	// testing out removing the do while loop
+    ESP_LOGD(LOG_TAG, "esp_wifi_connect");
+    errRc = ::esp_wifi_connect();
+    if (errRc != ESP_OK) {
+        ESP_LOGE(LOG_TAG, "esp_wifi_connect: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
+        abort();
     }
-    while (!m_connectFinished.take(5000, "connectAP")); // retry if not connected within 5s
     m_connectFinished.give();
 
 	ESP_LOGD(LOG_TAG, "<< connectAP");
